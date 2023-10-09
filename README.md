@@ -8,6 +8,7 @@ Senti a necessidade de ser mais simples criar uma nova nota fiscal e resolvi cri
 dentro insira desta forma:
 
 user_CPF_CNPJ = '00000000000'
+
 user_senha = '00000000000'
 
 troque o valor depois do sinal de "igual" (=) pelo seu cpf ou cnpj e sua senha.
