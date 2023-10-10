@@ -11,4 +11,6 @@ user_CPF_CNPJ = '00000000000'
 
 user_senha = '00000000000'
 
+tomador_cnpj = '00000000000'
+
 troque o valor depois do sinal de "igual" (=) pelo seu cpf ou cnpj e sua senha.
