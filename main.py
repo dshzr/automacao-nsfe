@@ -7,7 +7,8 @@ bot = Bot(
     TOMADOR_CNPJ=dados_user['tomador_cnpj'],
     LOCAL_SERVICO=dados_user['local_servico'],
     DESCRICAO_SERVICO = dados_user['descricao_servico'],
-    CODIGO_TRIBUTACAO_NACIONAL=dados_user['codigo_tributacao_nacional']
+    CODIGO_TRIBUTACAO_NACIONAL=dados_user['codigo_tributacao_nacional'],
+    VALOR_SERVICO=dados_user['valor_servico']
     )
 bot.iniciar_bot()
 

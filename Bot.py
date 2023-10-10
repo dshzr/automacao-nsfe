@@ -13,7 +13,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 class Bot:
-    def __init__(self, CPF_CNPJ, SENHA, TOMADOR_CNPJ, LOCAL_SERVICO, CODIGO_TRIBUTACAO_NACIONAL, DESCRICAO_SERVICO):
+    def __init__(self, CPF_CNPJ, SENHA, TOMADOR_CNPJ, LOCAL_SERVICO, CODIGO_TRIBUTACAO_NACIONAL, DESCRICAO_SERVICO, VALOR_SERVICO):
         self.servico = Service(ChromeDriverManager().install())
         self.navegador = webdriver.Chrome(service=self.servico)
         self.CPF_CNPJ = CPF_CNPJ
@@ -22,6 +22,7 @@ class Bot:
         self.LOCAL_SERVICO = LOCAL_SERVICO
         self.CODIGO_TRIBUTACAO_NACIONAL = CODIGO_TRIBUTACAO_NACIONAL
         self.DESCRICAO_SERVICO = DESCRICAO_SERVICO
+        self.VALOR_SERVICO = VALOR_SERVICO
         
     def iniciar_bot(self):
         #acessar nfse
@@ -47,6 +48,10 @@ class Bot:
         except Exception as e:
             print(f'Erro ao acessar aba servico: {e}')
     
+        try:
+            self.aba_valores()
+        except Exception as e:
+            print(f'Erro ao acessar aba valores: {e}')
         
     def acessar_nfse(self):
         self.navegador.get('https://www.nfse.gov.br/EmissorNacional/Login?ReturnUrl=%2fEmissorNacional')
@@ -181,4 +186,17 @@ class Bot:
         btn_avancar_valores.click()
         sleep(2)
         
-
+    def aba_valores(self):
+        valor_servico = self.navegador.find_element(By.ID,'Valores_ValorServico')
+        valor_servico.send_keys(self.VALOR_SERVICO)
+        sleep(1)
+        scrollToFinal(self)
+        sleep(1)
+        btn_nao_informar_rendimentos = self.navegador.find_element(By.XPATH, '//*[@id="pnlOpcaoParaMEI"]/div/div/label')
+        btn_nao_informar_rendimentos.click()
+        sleep(1)
+        avancar = self.navegador.find_element(By.XPATH, '/html/body/div[1]/form/div[7]/button')
+        avancar.click()
+        sleep(2)
+        
+        
